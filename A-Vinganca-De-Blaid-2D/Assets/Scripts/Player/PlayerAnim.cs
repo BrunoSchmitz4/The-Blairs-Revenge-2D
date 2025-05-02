@@ -4,6 +4,7 @@ public class PlayerAnim : MonoBehaviour
 {
     private Animator animator;
     private IsGroundedChecker groundedChecker;
+    private Health playerHealth;
 
     private void Awake()
     {
@@ -11,6 +12,9 @@ public class PlayerAnim : MonoBehaviour
         // se fossemos atrelando o script à outro lugar, não poderíamos usar o getComponent
         animator = GetComponent<Animator>();
         groundedChecker = GetComponent<IsGroundedChecker>();
+        playerHealth = GetComponent<Health>();
+
+        playerHealth.OnHurt += PlayHurtAnim;
     }
 
     private void Update()
@@ -19,5 +23,10 @@ public class PlayerAnim : MonoBehaviour
         animator.SetBool("isMoving", isMoving);
         animator.SetBool("isJumping", !groundedChecker.IsGrounded());
         animator.SetBool("isMoving", isMoving);
+    }
+
+    private void PlayHurtAnim()
+    {
+        animator.SetTrigger("hurt");
     }
 }
