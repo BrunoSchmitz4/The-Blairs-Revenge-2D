@@ -9,6 +9,7 @@ public class InputManager
     public float Movement => playerControls.Gameplay.Movement.ReadValue<float>();
 
     public event Action OnJump;
+    public event Action OnAttack;
 
     public InputManager()
     {
@@ -16,11 +17,19 @@ public class InputManager
         playerControls.Gameplay.Enable();
 
         playerControls.Gameplay.Jump.performed += OnJumpPerformed;
+        playerControls.Gameplay.Jump.performed += OnAttackPerformed;
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
         OnJump?.Invoke();
     }
+
+    private void OnAttackPerformed(InputAction.CallbackContext context)
+    {
+        OnAttack.Invoke();
+    }
+
+    public void DisablePlayerInput() => playerControls.Gameplay.Disable();
 
 }

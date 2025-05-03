@@ -247,7 +247,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  attackCooldown: 2
+  attackCooldown: 1
 --- !u!1 &292235743
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3074d2f39a9fd2f49b93afd8776b7e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 5
   jumpForce: 3
 --- !u!212 &292235745
 SpriteRenderer:

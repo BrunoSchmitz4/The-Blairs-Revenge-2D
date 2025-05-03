@@ -5,13 +5,15 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField] private float jumpForce = 3;
 
     private Rigidbody2D rigidbody;
-    private IsGroundedChecker isGroundedCheker;
+    private IsGroundedChecker isGroundedChecker;
     private float moveDirection;
 
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        isGroundedCheker = GetComponent<IsGroundedChecker>();
+        isGroundedChecker = GetComponent<IsGroundedChecker>();
+        GetComponent<Health>().OnDead += HandlePlayerDeath;
+
     }
 
     private void Start()
@@ -45,7 +47,14 @@ public class PlayerBehavior : MonoBehaviour
 
     private void HandleJump()
     {
-        if (isGroundedCheker.IsGrounded() == false) return;
+        if (isGroundedChecker.IsGrounded() == false) return;
         rigidbody.velocity += Vector2.up * jumpForce;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        rigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+        GameManager.Instance.InputManager.DisablePlayerInput();
     }
 }
