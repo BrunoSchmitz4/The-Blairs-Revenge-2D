@@ -6,6 +6,7 @@ public class MeleeEnemy : BaseEnemy
     [SerializeField] private Vector2 detectBoxSize;
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private float attackCooldown;
+
     private float cooldownTimer;
 
     protected override void Update()
@@ -27,9 +28,9 @@ public class MeleeEnemy : BaseEnemy
     private void AttackPlayer()
     {
         cooldownTimer = 0;
-        if(CheckPlayerInDetectArea().TryGetComponent(out Health playerHealth))
+        if (CheckPlayerInDetectArea().TryGetComponent(out Health playerHealth))
         {
-            print("Making player take damage!!");
+            print("Making player take damage");
             playerHealth.TakeDamage();
         }
     }

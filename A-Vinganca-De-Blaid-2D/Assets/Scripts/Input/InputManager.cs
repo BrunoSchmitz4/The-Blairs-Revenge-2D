@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputManager
@@ -14,10 +13,10 @@ public class InputManager
     public InputManager()
     {
         playerControls = new PlayerControls();
-        playerControls.Gameplay.Enable();
+        EnablePlayerInput();
 
         playerControls.Gameplay.Jump.performed += OnJumpPerformed;
-        playerControls.Gameplay.Jump.performed += OnAttackPerformed;
+        playerControls.Gameplay.Attack.performed += OnAttackPerformed;
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext context)
@@ -25,11 +24,9 @@ public class InputManager
         OnJump?.Invoke();
     }
 
-    private void OnAttackPerformed(InputAction.CallbackContext context)
-    {
-        OnAttack.Invoke();
-    }
+    private void OnAttackPerformed(InputAction.CallbackContext obj) => OnAttack?.Invoke();
 
     public void DisablePlayerInput() => playerControls.Gameplay.Disable();
 
+    public void EnablePlayerInput() => playerControls.Gameplay.Enable();
 }

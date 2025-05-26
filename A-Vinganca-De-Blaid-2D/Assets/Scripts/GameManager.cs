@@ -5,10 +5,10 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public InputManager InputManager { get; private set; }
 
-    private void Awake() // Acontece antes do primeiro frame do jogo
+    private void Awake()
     {
-        if (Instance != null) Destroy(this.gameObject);
-        Instance = this;
+        if (Instance == null) Instance = this;
+        else Destroy(this.gameObject);
 
         InputManager = new InputManager();
     }
