@@ -50,8 +50,8 @@ To view and run the project on your local machine, you will need the **Unity Hub
 ### Prerequisites
 
 * **Unity Hub**
-* **Unity Editor** (*Please specify the exact version here, e.g., Unity 2021.3 LTS*)
-* **Visual Studio Code** (or Visual Studio) for C# script editing.
+* **Unity Editor**
+* **Visual Studio Code**
 
 ### Cloning the Repository
 
